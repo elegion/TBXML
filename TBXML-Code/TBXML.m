@@ -256,11 +256,19 @@
 @implementation TBXML (StaticFunctions)
 
 + (NSString*) elementName:(TBXMLElement*)aXMLElement {
+    return [self elementName:aXMLElement encoding:NSUTF8StringEncoding];
+}
+
++ (NSString*) elementName:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding {
 	if (nil == aXMLElement->name) return @"";
-	return [NSString stringWithCString:&aXMLElement->name[0] encoding:NSUTF8StringEncoding];
+	return [NSString stringWithCString:&aXMLElement->name[0] encoding:encoding];
 }
 
 + (NSString*) elementName:(TBXMLElement*)aXMLElement error:(NSError **)error {
+    return [self elementName:aXMLElement encoding:NSUTF8StringEncoding error:error];
+}
+
++ (NSString*) elementName:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding error:(NSError **)error {
     // check for nil element
     if (nil == aXMLElement) {
         if (error) *error = [TBXML errorWithCode:D_TBXML_ELEMENT_IS_NIL];
@@ -273,15 +281,23 @@
         return @"";
     }
     
-	return [NSString stringWithCString:&aXMLElement->name[0] encoding:NSUTF8StringEncoding];
+	return [NSString stringWithCString:&aXMLElement->name[0] encoding:encoding];
 }
 
 + (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute {
+    return [self attributeName:aXMLAttribute encoding:NSUTF8StringEncoding];
+}
+
++ (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute encoding:(NSStringEncoding)encoding {
 	if (nil == aXMLAttribute->name) return @"";
-	return [NSString stringWithCString:&aXMLAttribute->name[0] encoding:NSUTF8StringEncoding];
+	return [NSString stringWithCString:&aXMLAttribute->name[0] encoding:encoding];
 }
 
 + (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute error:(NSError **)error {
+    return [self attributeName:aXMLAttribute encoding:NSUTF8StringEncoding error:error];
+}
+
++ (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute encoding:(NSStringEncoding)encoding error:(NSError **)error {
     // check for nil attribute
     if (nil == aXMLAttribute) {
         if (error) *error = [TBXML errorWithCode:D_TBXML_ATTRIBUTE_IS_NIL];
@@ -294,7 +310,7 @@
         return @"";
     }
     
-	return [NSString stringWithCString:&aXMLAttribute->name[0] encoding:NSUTF8StringEncoding];
+	return [NSString stringWithCString:&aXMLAttribute->name[0] encoding:encoding];
 }
 
 
@@ -314,11 +330,19 @@
 }
 
 + (NSString*) textForElement:(TBXMLElement*)aXMLElement {
+    return [self textForElement:aXMLElement encoding:NSUTF8StringEncoding];
+}
+
++ (NSString*) textForElement:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding {
 	if (nil == aXMLElement->text) return @"";
-	return [NSString stringWithCString:&aXMLElement->text[0] encoding:NSUTF8StringEncoding];
+	return [NSString stringWithCString:&aXMLElement->text[0] encoding:encoding];
 }
 
 + (NSString*) textForElement:(TBXMLElement*)aXMLElement error:(NSError **)error {
+    return [self textForElement:aXMLElement encoding:NSUTF8StringEncoding error:error];
+}
+
++ (NSString*) textForElement:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding error:(NSError **)error {
     // check for nil element
     if (nil == aXMLElement) {
         if (error) *error = [TBXML errorWithCode:D_TBXML_ELEMENT_IS_NIL];
@@ -370,7 +394,7 @@
             if (attribute->value[0])
                 value = [NSString stringWithCString:&attribute->value[0] encoding:NSUTF8StringEncoding];
             else
-                value = [NSString stringWithString:@""];
+                value = @"";
             
 			break;
 		}

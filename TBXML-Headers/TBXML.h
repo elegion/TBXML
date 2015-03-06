@@ -181,6 +181,14 @@ typedef void (^TBXMLIterateAttributeBlock)(TBXMLAttribute *attribute, NSString *
 
 @interface TBXML (StaticFunctions)
 
++ (NSString*) elementName:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding;
++ (NSString*) elementName:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding error:(NSError **)error;
++ (NSString*) textForElement:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding;
++ (NSString*) textForElement:(TBXMLElement*)aXMLElement encoding:(NSStringEncoding)encoding error:(NSError **)error;
+
++ (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute encoding:(NSStringEncoding)encoding;
++ (NSString*) attributeName:(TBXMLAttribute*)aXMLAttribute encoding:(NSStringEncoding)encoding error:(NSError **)error;
+
 + (NSString*) elementName:(TBXMLElement*)aXMLElement;
 + (NSString*) elementName:(TBXMLElement*)aXMLElement error:(NSError **)error;
 + (NSString*) textForElement:(TBXMLElement*)aXMLElement;
